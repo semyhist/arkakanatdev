@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { format } from 'date-fns';
 import { tr } from 'date-fns/locale';
-import { Sun, Moon, Instagram, X, Calendar, User, Users, MapPin, Star, Wind, Loader, AlertCircle, Send, ChevronDown, X as XIcon, Gauge, CircleDot, Flag, Clock, UserRound, ArrowRight, Trophy, CornerUpRight, CheckCircle2, History } from 'lucide-react';
+import { Sun, Moon, Instagram, X, Calendar, User, Users, MapPin, Star, Wind, Loader, AlertCircle, Send, ChevronDown, X as XIcon, Gauge, CircleDot, Flag, Clock, UserRound, ArrowRight, Trophy, CornerUpRight, CheckCircle2, History, Menu } from 'lucide-react';
 
 // =================================================================================================
 // 1. Static Data (data.js)
@@ -20,15 +20,13 @@ const team = {
     { name: 'Azra', bio: '@ferrarisefiri', emoji: '🏎️' },
     { name: 'Yunus Emre', bio: '@orek.edits', emoji: '🏎️' },
     { name: 'Yağız', bio: '@vettelsexuel', emoji: '🏎️' },
-   
- 
   ],
-    Twitter: [
+  Twitter: [
     { name: 'Utku', bio: 'Haber Departmanı yetkilisi.', emoji: '🏎️' },
     { name: 'Furkan', bio: 'Haber Departmanı yetkilisi.', emoji: '🏎️' },
     { name: 'Gencer', bio: '', emoji: '🏎️' },
     { name: 'Taha Yasin', bio: '', emoji: '🏎️' },
-    { name: 'Utku', bio: '', emoji: '🏎️' },  
+    { name: 'Utku', bio: '', emoji: '🏎️' },
     { name: 'Melisa', bio: '', emoji: '🏎️' },
   ]
 };
@@ -127,7 +125,6 @@ const f1HistoryData = {
     { year: 1950, driver: 'Giuseppe Farina', constructor: 'Alfa Romeo' },
   ]
 };
-
 
 const circuits = [
   { name: 'Bahreyn GP', location: 'Sakhir, Bahreyn', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Bahrain.svg/1280px-Flag_of_Bahrain.svg.png', length: '5.412 km', laps: 57, fastestLap: '1:31.447 (P. Gasly, 2020)', flag: '🇧🇭' },
@@ -234,7 +231,7 @@ const AnimatedSection = ({ children, delay = 0 }) => {
       }
     });
 
-    observer.observe(domRef.current);
+    if (domRef.current) observer.observe(domRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -275,19 +272,19 @@ const Countdown = ({ targetDate }) => {
   const timerComponents = Object.keys(timeLeft).map((interval) => {
     if (!timeLeft[interval] && timeLeft[interval] !== 0) return null;
     return (
-      <div key={interval} className="flex flex-col items-center dark:bg-zinc-900 bg-gray-200 rounded-xl p-4 md:p-6 mx-1 md:mx-2 border dark:border-zinc-700/50 border-gray-300 transform transition-transform duration-300 hover:scale-105">
-        <span className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-red-500">{String(timeLeft[interval]).padStart(2, '0')}</span>
-        <span className="text-xs md:text-sm font-semibold uppercase dark:text-gray-300 text-gray-700 mt-1">{interval}</span>
+      <div key={interval} className="flex flex-col items-center dark:bg-zinc-900 bg-gray-200 rounded-xl p-3 sm:p-4 md:p-6 mx-1 md:mx-2 border dark:border-zinc-700/50 border-gray-300 transform transition-transform duration-300 hover:scale-105 min-w-[70px]">
+        <span className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-red-500">{String(timeLeft[interval]).padStart(2, '0')}</span>
+        <span className="text-[10px] sm:text-xs md:text-sm font-semibold uppercase dark:text-gray-300 text-gray-700 mt-1">{interval}</span>
       </div>
     );
   });
 
   return (
-    <div className="flex justify-center items-center py-4">
+    <div className="flex justify-center items-center py-4 flex-wrap gap-2">
       {timerComponents.length > 0 ? (
         timerComponents
       ) : (
-        <span className="text-xl md:text-2xl font-bold text-red-500">Yarış başladı!</span>
+        <span className="text-lg sm:text-xl md:text-2xl font-bold text-red-500">Yarış başladı!</span>
       )}
     </div>
   );
@@ -353,37 +350,36 @@ const HomePage = ({ f1Data, loading, error }) => {
   return (
     <>
       <AnimatedSection>
-        <section className="text-center py-16">
-          <h1 className="text-4xl md:text-6xl font-extrabold dark:text-white text-gray-800 mb-4 animate-fade-in">
+        <section className="text-center py-10 sm:py-12 md:py-16">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold dark:text-white text-gray-800 mb-3 sm:mb-4 animate-fade-in px-2">
             Formula 1'in Arka Kanat'ı
           </h1>
-          <p className="text-lg md:text-xl dark:text-gray-300 text-gray-700 mb-8 animate-fade-in">
+          <p className="text-base sm:text-lg md:text-xl dark:text-gray-300 text-gray-700 mb-6 sm:mb-8 animate-fade-in px-4">
             Bu sayfa bir Arka Kanat ürünüdür
           </p>
           {nextRace && (
-            <div className="dark:bg-zinc-900 bg-gray-50 p-6 rounded-3xl border dark:border-zinc-700/50 border-gray-300 shadow-2xl inline-block animate-zoom-in">
-              <h2 className="text-2xl md:text-3xl font-bold mb-2 text-red-400 flex items-center justify-center">
-                <CircleDot size={24} className="mr-3 text-red-500 animate-pulse" />
+            <div className="dark:bg-zinc-900 bg-gray-50 p-4 sm:p-6 rounded-3xl border dark:border-zinc-700/50 border-gray-300 shadow-2xl inline-block max-w-full animate-zoom-in text-left">
+              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 text-red-400 flex items-center justify-start sm:justify-center">
+                <CircleDot size={22} className="mr-2 sm:mr-3 text-red-500 animate-pulse" />
                 Sıradaki Yarış
               </h2>
-              <p className="dark:text-gray-200 text-gray-800 mb-4 text-xl md:text-2xl font-semibold">{nextRace.raceName}</p>
+              <p className="dark:text-gray-200 text-gray-800 mb-4 text-lg sm:text-xl md:text-2xl font-semibold break-words">{nextRace.raceName}</p>
 
               {/* Countdown Component */}
               <Countdown targetDate={`${nextRace.date}T${nextRace.time || '00:00:00Z'}`} />
 
               {/* Race Details directly below the countdown */}
-              <div className="mt-8 pt-4 border-t dark:border-zinc-800 border-gray-300">
-                <h3 className="text-xl font-bold dark:text-gray-200 text-gray-800 mb-4">Yarış Detayları</h3>
-                <div className="grid grid-cols-1 gap-4 text-left">
+              <div className="mt-6 sm:mt-8 pt-4 border-t dark:border-zinc-800 border-gray-300">
+                <h3 className="text-lg sm:text-xl font-bold dark:text-gray-200 text-gray-800 mb-3">Yarış Detayları</h3>
+                <div className="grid grid-cols-1 gap-3 sm:gap-4 text-left">
                   {Object.keys(nextRace.hasOwnProperty('Sessions') ? nextRace.Sessions : nextRace).filter(key => key.includes('Practice') || key.includes('Qualifying') || key.includes('Sprint') || key.includes('Race')).map((key, index) => {
                     const session = nextRace.hasOwnProperty('Sessions') ? nextRace.Sessions[key] : nextRace[key];
-                    // Ensure session object exists before trying to access its properties
-                    if (!session) return null; 
+                    if (!session) return null;
                     return (
-                      <div key={index} className="dark:bg-zinc-900 bg-gray-200 rounded-lg p-4 transition-colors duration-200 hover:dark:bg-zinc-700/70 hover:bg-gray-300 flex items-center space-x-3">
+                      <div key={index} className="dark:bg-zinc-900 bg-gray-200 rounded-lg p-3 sm:p-4 transition-colors duration-200 hover:dark:bg-zinc-700/70 hover:bg-gray-300 flex items-center space-x-3">
                         {getSessionIcon(key)}
-                        <div>
-                          <p className="font-semibold dark:text-gray-200 text-gray-800">{getSessionNameTR(key)}</p>
+                        <div className="min-w-0">
+                          <p className="font-semibold dark:text-gray-200 text-gray-800 truncate">{getSessionNameTR(key)}</p>
                           <p className="text-sm dark:text-gray-300 text-gray-700 mt-1">{convertToIstanbulTime(session.date, session.time)}</p>
                         </div>
                       </div>
@@ -396,19 +392,19 @@ const HomePage = ({ f1Data, loading, error }) => {
         </section>
       </AnimatedSection>
 
-      <div className="py-12"></div> {/* Added padding for better spacing */}
-      
+      <div className="py-8 sm:py-10 md:py-12"></div>
+
       {/* New F1 History Section */}
       <AnimatedSection delay={400}>
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold dark:text-gray-100 text-gray-800 mb-6 flex items-center">
-            <History size={24} className="mr-2" /> F1 Tarihi
+        <section className="mb-10 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl font-bold dark:text-gray-100 text-gray-800 mb-4 sm:mb-6 flex items-center px-2">
+            <History size={22} className="mr-2" /> F1 Tarihi
           </h2>
-          <div className="grid md:grid-cols-2 gap-6">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
             {/* Most Driver Titles */}
-            <div className="dark:bg-zinc-900 bg-white p-6 rounded-2xl border dark:border-zinc-700/50 border-gray-300 shadow-lg transform transition-transform duration-300 hover:scale-[1.03] h-full flex flex-col">
-              <h3 className="text-xl font-semibold dark:text-gray-200 text-gray-800 mb-4">En Çok Pilotlar Şampiyonu</h3>
-              <ul className="space-y-3">
+            <div className="dark:bg-zinc-900 bg-white p-5 sm:p-6 rounded-2xl border dark:border-zinc-700/50 border-gray-300 shadow-lg transform transition-transform duration-300 hover:scale-[1.03] h-full flex flex-col">
+              <h3 className="text-lg sm:text-xl font-semibold dark:text-gray-200 text-gray-800 mb-3 sm:mb-4">En Çok Pilotlar Şampiyonu</h3>
+              <ul className="space-y-2 sm:space-y-3">
                 {f1HistoryData.mostDriverTitles.map((item, index) => (
                   <li key={index} className="flex items-center justify-between">
                     <span className="font-semibold dark:text-gray-300 text-gray-700">{item.driver}</span>
@@ -417,11 +413,11 @@ const HomePage = ({ f1Data, loading, error }) => {
                 ))}
               </ul>
             </div>
-            
+
             {/* Most Constructor Titles */}
-            <div className="dark:bg-zinc-900 bg-white p-6 rounded-2xl border dark:border-zinc-700/50 border-gray-300 shadow-lg transform transition-transform duration-300 hover:scale-[1.03] h-full flex flex-col">
-              <h3 className="text-xl font-semibold dark:text-gray-200 text-gray-800 mb-4">En Çok Takımlar Şampiyonu</h3>
-              <ul className="space-y-3">
+            <div className="dark:bg-zinc-900 bg-white p-5 sm:p-6 rounded-2xl border dark:border-zinc-700/50 border-gray-300 shadow-lg transform transition-transform duration-300 hover:scale-[1.03] h-full flex flex-col">
+              <h3 className="text-lg sm:text-xl font-semibold dark:text-gray-200 text-gray-800 mb-3 sm:mb-4">En Çok Takımlar Şampiyonu</h3>
+              <ul className="space-y-2 sm:space-y-3">
                 {f1HistoryData.mostConstructorTitles.map((item, index) => (
                   <li key={index} className="flex items-center justify-between">
                     <span className="font-semibold dark:text-gray-300 text-gray-700">{item.constructor}</span>
@@ -431,31 +427,25 @@ const HomePage = ({ f1Data, loading, error }) => {
               </ul>
             </div>
           </div>
-          
+
           {/* All Season Champions */}
-          <div className="mt-12 dark:bg-zinc-900 bg-white p-6 rounded-2xl border dark:border-zinc-700/50 border-gray-300 shadow-lg">
-            <h3 className="text-xl font-semibold dark:text-gray-200 text-gray-800 mb-4">Bütün Sezon Şampiyonları</h3>
+          <div className="mt-8 sm:mt-12 dark:bg-zinc-900 bg-white p-4 sm:p-6 rounded-2xl border dark:border-zinc-700/50 border-gray-300 shadow-lg">
+            <h3 className="text-lg sm:text-xl font-semibold dark:text-gray-200 text-gray-800 mb-3 sm:mb-4">Bütün Sezon Şampiyonları</h3>
             <div className="overflow-auto max-h-96">
-              <table className="min-w-full divide-y dark:divide-zinc-700 divide-gray-300">
-                <thead>
+              <table className="min-w-full divide-y dark:divide-zinc-700 divide-gray-300 text-sm">
+                <thead className="sticky top-0 dark:bg-zinc-900 bg-white">
                   <tr>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium dark:text-gray-300 text-gray-500 uppercase tracking-wider">
-                      Sezon
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium dark:text-gray-300 text-gray-500 uppercase tracking-wider">
-                      Pilot Şampiyonu
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-xs font-medium dark:text-gray-300 text-gray-500 uppercase tracking-wider">
-                      Takımlar Şampiyonu
-                    </th>
+                    <th scope="col" className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-medium dark:text-gray-300 text-gray-500 uppercase tracking-wider">Sezon</th>
+                    <th scope="col" className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-medium dark:text-gray-300 text-gray-500 uppercase tracking-wider">Pilot Şampiyonu</th>
+                    <th scope="col" className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-medium dark:text-gray-300 text-gray-500 uppercase tracking-wider">Takımlar Şampiyonu</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y dark:divide-zinc-700 divide-gray-300">
                   {f1HistoryData.allChampions.map((champion, index) => (
                     <tr key={index} className="hover:dark:bg-zinc-700/50 hover:bg-gray-200 transition-colors">
-                      <td className="px-6 py-4 whitespace-nowrap text-sm font-medium dark:text-gray-200 text-gray-800">{champion.year}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-700">{champion.driver}</td>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm dark:text-gray-300 text-gray-700">{champion.constructor}</td>
+                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap dark:text-gray-200 text-gray-800">{champion.year}</td>
+                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap dark:text-gray-300 text-gray-700">{champion.driver}</td>
+                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap dark:text-gray-300 text-gray-700">{champion.constructor}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -473,25 +463,25 @@ const RaceCalendarPage = ({ f1Data, loading, error }) => {
   if (error) return <div className="text-center text-red-500 py-10"><AlertCircle size={48} className="mx-auto mb-4" />Takvim verileri yüklenemedi.</div>;
 
   return (
-    <div className="py-12">
-      <h1 className="text-4xl md:text-5xl font-extrabold dark:text-white text-gray-800 text-center mb-12">
+    <div className="py-8 sm:py-10 md:py-12">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold dark:text-white text-gray-800 text-center mb-8 sm:mb-10 md:mb-12">
         2025 F1 Yarış Takvimi
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5 sm:gap-6">
         {f1Data?.races?.map((race, index) => (
           <AnimatedSection key={index} delay={index * 100}>
-            <div className="dark:bg-zinc-900 bg-white rounded-2xl p-6 border dark:border-zinc-700/50 border-gray-300 shadow-lg">
-              <div className="flex justify-between items-center mb-4">
-                <span className="text-lg font-bold text-red-400">{race.round}. Yarış</span>
-                {new Date(`${race.date}T${race.time}`) < new Date() && <span className="dark:bg-gray-600 bg-gray-400 text-white text-xs font-semibold px-2 py-1 rounded-full">Tamamlandı</span>}
+            <div className="dark:bg-zinc-900 bg-white rounded-2xl p-5 sm:p-6 border dark:border-zinc-700/50 border-gray-300 shadow-lg h-full">
+              <div className="flex justify-between items-center mb-3 sm:mb-4">
+                <span className="text-sm sm:text-base md:text-lg font-bold text-red-400">{race.round}. Yarış</span>
+                {new Date(`${race.date}T${race.time}`) < new Date() && <span className="dark:bg-gray-600 bg-gray-400 text-white text-[10px] sm:text-xs font-semibold px-2 py-1 rounded-full">Tamamlandı</span>}
               </div>
-              <h3 className="text-2xl font-bold dark:text-gray-100 text-gray-800 mb-2">{race.raceName}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold dark:text-gray-100 text-gray-800 mb-1.5 sm:mb-2">{race.raceName}</h3>
               <p className="dark:text-gray-300 text-gray-700 flex items-center">
-                <MapPin size={16} className="mr-2 text-red-500" />
-                {race.Circuit.circuitName}, {race.Circuit.Location.country}
+                <MapPin size={16} className="mr-2 text-red-500 shrink-0" />
+                <span className="truncate">{race.Circuit.circuitName}, {race.Circuit.Location.country}</span>
               </p>
               <p className="dark:text-gray-300 text-gray-700 flex items-center mt-2">
-                <Calendar size={16} className="mr-2 text-red-500" />
+                <Calendar size={16} className="mr-2 text-red-500 shrink-0" />
                 {format(new Date(race.date), 'dd MMMM yyyy', { locale: tr })}
               </p>
             </div>
@@ -504,24 +494,24 @@ const RaceCalendarPage = ({ f1Data, loading, error }) => {
 
 const CircuitGuidePage = ({ circuits }) => {
   return (
-    <div className="py-12">
-      <h1 className="text-4xl md:text-5xl font-extrabold dark:text-white text-gray-800 text-center mb-12">
+    <div className="py-8 sm:py-10 md:py-12">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold dark:text-white text-gray-800 text-center mb-8 sm:mb-10 md:mb-12">
         Pist Rehberi
       </h1>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
         {circuits.map((circuit, index) => (
           <AnimatedSection key={index} delay={index * 100}>
             <div className="relative dark:bg-zinc-900 bg-white rounded-2xl overflow-hidden shadow-lg border dark:border-zinc-700/50 border-gray-300 h-full flex flex-col">
               <img
                 src={circuit.image}
                 alt={circuit.name}
-                className="w-full h-48 object-cover object-center transition-transform duration-500 hover:scale-110"
+                className="w-full h-40 sm:h-48 object-cover object-center transition-transform duration-500 hover:scale-110"
               />
-              <div className="p-6 flex-1">
-                <h3 className="text-2xl font-bold dark:text-gray-100 text-gray-800 mb-2">{circuit.name} {circuit.flag}</h3>
+              <div className="p-5 sm:p-6 flex-1">
+                <h3 className="text-xl sm:text-2xl font-bold dark:text-gray-100 text-gray-800 mb-2">{circuit.name} {circuit.flag}</h3>
                 <p className="dark:text-gray-300 text-gray-700 flex items-center mb-2">
-                  <MapPin size={16} className="mr-2 text-red-500" />
-                  {circuit.location}
+                  <MapPin size={16} className="mr-2 text-red-500 shrink-0" />
+                  <span className="truncate">{circuit.location}</span>
                 </p>
                 <div className="text-sm dark:text-gray-300 text-gray-700 space-y-1">
                   <p><strong>Pist Uzunluğu:</strong> {circuit.length}</p>
@@ -538,50 +528,49 @@ const CircuitGuidePage = ({ circuits }) => {
 };
 
 const TeamPage = () => (
-  <div className="py-12">
-    <h1 className="text-4xl md:text-5xl font-extrabold dark:text-white text-gray-800 text-center mb-12">
+  <div className="py-8 sm:py-10 md:py-12">
+    <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold dark:text-white text-gray-800 text-center mb-8 sm:mb-10 md:mb-12">
       Ekibimiz
     </h1>
     <div className="flex flex-col items-center">
       {/* Yönetim Segment */}
-      <h2 className="text-3xl font-bold dark:text-white text-gray-800 mb-8 mt-4 border-b-2 border-red-500 pb-2">Yönetim</h2>
-      <div className="grid sm:grid-cols-2 gap-8 mb-12">
+      <h2 className="text-2xl sm:text-3xl font-bold dark:text-white text-gray-800 mb-6 sm:mb-8 mt-2 sm:mt-4 border-b-2 border-red-500 pb-2">Yönetim</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-10 sm:mb-12 w-full">
         {team.management.map((member, index) => (
           <AnimatedSection key={`management-${index}`} delay={index * 150}>
             <div className="dark:bg-zinc-900 bg-white rounded-2xl p-6 text-center border dark:border-zinc-700/50 border-gray-300 h-full flex flex-col items-center">
               <span className="text-5xl mb-4">{member.emoji}</span>
-              <h3 className="text-2xl font-bold dark:text-gray-100 text-gray-800 mb-2">{member.name}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold dark:text-gray-100 text-gray-800 mb-2">{member.name}</h3>
               <p className="dark:text-gray-300 text-gray-700 text-sm flex-1">{member.bio}</p>
             </div>
           </AnimatedSection>
         ))}
       </div>
-           {/* Yönetim Segment */}
-      <h2 className="text-3xl font-bold dark:text-white text-gray-800 mb-8 mt-4 border-b-2 border-red-500 pb-2">İçerik Üretim</h2>
-      <div className="grid sm:grid-cols-2 gap-8 mb-12">
+      {/* İçerik Üretim */}
+      <h2 className="text-2xl sm:text-3xl font-bold dark:text-white text-gray-800 mb-6 sm:mb-8 mt-2 sm:mt-4 border-b-2 border-red-500 pb-2">İçerik Üretim</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mb-10 sm:mb-12 w-full">
         {team.admin.map((member, index) => (
           <AnimatedSection key={`admin-${index}`} delay={index * 150}>
             <div className="dark:bg-zinc-900 bg-white rounded-2xl p-6 text-center border dark:border-zinc-700/50 border-gray-300 h-full flex flex-col items-center">
               <span className="text-5xl mb-4">{member.emoji}</span>
-              <h3 className="text-2xl font-bold dark:text-gray-100 text-gray-800 mb-2">{member.name}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold dark:text-gray-100 text-gray-800 mb-2">{member.name}</h3>
               <p className="dark:text-gray-300 text-gray-700 text-sm flex-1">{member.bio}</p>
             </div>
           </AnimatedSection>
         ))}
       </div>
-      
-      {/* Admin Segment */}
-      <h2 className="text-3xl font-bold dark:text-white text-gray-800 mb-8 mt-4 border-b-2 border-red-500 pb-2">Haber (X)</h2>
-      <div className="grid sm:grid-cols-2 gap-8">
+
+      {/* Haber (X) */}
+      <h2 className="text-2xl sm:text-3xl font-bold dark:text-white text-gray-800 mb-6 sm:mb-8 mt-2 sm:mt-4 border-b-2 border-red-500 pb-2">Haber (X)</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 w-full">
         {team.Twitter.map((member, index) => (
           <AnimatedSection key={`Twitter-${index}`} delay={index * 150}>
             <div className="dark:bg-zinc-900 bg-white rounded-2xl p-6 text-center border dark:border-zinc-700/50 border-gray-300 h-full flex flex-col items-center">
               <span className="text-5xl mb-4">{member.emoji}</span>
-              <h3 className="text-2xl font-bold dark:text-gray-100 text-gray-800 mb-2">{member.name}</h3>
+              <h3 className="text-xl sm:text-2xl font-bold dark:text-gray-100 text-gray-800 mb-2">{member.name}</h3>
               <p className="dark:text-gray-300 text-gray-700 text-sm flex-1">{member.bio}</p>
             </div>
           </AnimatedSection>
-          
         ))}
       </div>
     </div>
@@ -596,26 +585,24 @@ const StandingsPage = ({ f1Data, loading, error }) => {
   if (error) return <div className="text-center text-red-500 py-10"><AlertCircle size={48} className="mx-auto mb-4" />Sıralama verileri yüklenemedi.</div>;
 
   const renderDrivers = () => {
-    // Check if the driver standings data is available and not empty
     if (!f1Data.driverStandings || f1Data.driverStandings.length === 0) {
       return <div className="text-center dark:text-gray-300 text-gray-700 py-10">Pilotlar sıralaması verisi henüz mevcut değil.</div>;
     }
     return (
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {f1Data.driverStandings.map((driver, index) => {
-          // Correctly access the constructor name from the nested object
           const teamName = driver.Constructors?.[0]?.name;
           const colorClass = constructorColors[teamName] || 'bg-gray-500';
           return (
-            <div key={index} className="dark:bg-zinc-900 bg-white rounded-xl p-4 flex items-center border dark:border-zinc-700/50 border-gray-300 relative">
+            <div key={index} className="dark:bg-zinc-900 bg-white rounded-xl p-4 sm:p-5 flex items-center border dark:border-zinc-700/50 border-gray-300 relative">
               <div className={`w-2 h-full absolute left-0 top-0 bottom-0 rounded-l-xl ${colorClass}`}></div>
-              <div className="flex-none w-12 text-center text-xl font-bold text-red-400">{driver.position}</div>
-              <div className="flex-1 ml-4">
-                <p className="font-semibold text-lg dark:text-white text-gray-800">{driver.Driver.givenName} {driver.Driver.familyName}</p>
-                <p className="text-sm dark:text-gray-300 text-gray-700">{teamName}</p>
+              <div className="flex-none w-10 sm:w-12 text-center text-lg sm:text-xl font-bold text-red-400">{driver.position}</div>
+              <div className="flex-1 ml-3 sm:ml-4 min-w-0">
+                <p className="font-semibold text-base sm:text-lg dark:text-white text-gray-800 truncate">{driver.Driver.givenName} {driver.Driver.familyName}</p>
+                <p className="text-xs sm:text-sm dark:text-gray-300 text-gray-700 truncate">{teamName}</p>
               </div>
-              <div className="text-right font-bold dark:text-gray-200 text-gray-800">
-                {driver.points} <span className="text-sm dark:text-gray-300 text-gray-700">PTS</span>
+              <div className="text-right font-bold dark:text-gray-200 text-gray-800 ml-3 sm:ml-4">
+                {driver.points} <span className="text-xs sm:text-sm dark:text-gray-300 text-gray-700">PTS</span>
               </div>
             </div>
           );
@@ -625,25 +612,23 @@ const StandingsPage = ({ f1Data, loading, error }) => {
   };
 
   const renderConstructors = () => {
-    // Check if the constructor standings data is available and not empty
     if (!f1Data.constructorStandings || f1Data.constructorStandings.length === 0) {
       return <div className="text-center dark:text-gray-300 text-gray-700 py-10">Takımlar sıralaması verisi henüz mevcut değil.</div>;
     }
     return (
-      <div className="space-y-4">
+      <div className="space-y-3 sm:space-y-4">
         {f1Data.constructorStandings.map((constructor, index) => {
-          // The API now returns a nested 'Constructor' object. Access 'name' from there.
           const constructorName = constructor.Constructor?.name;
           const colorClass = constructorColors[constructorName] || 'bg-gray-500';
           return (
-            <div key={index} className="dark:bg-zinc-900 bg-white rounded-xl p-4 flex items-center border dark:border-zinc-700/50 border-gray-300 relative">
+            <div key={index} className="dark:bg-zinc-900 bg-white rounded-xl p-4 sm:p-5 flex items-center border dark:border-zinc-700/50 border-gray-300 relative">
               <div className={`w-2 h-full absolute left-0 top-0 bottom-0 rounded-l-xl ${colorClass}`}></div>
-              <div className="flex-none w-12 text-center text-xl font-bold text-red-400">{constructor.position}</div>
-              <div className="flex-1 ml-4">
-                <p className="font-semibold text-lg dark:text-white text-gray-800">{constructorName}</p>
+              <div className="flex-none w-10 sm:w-12 text-center text-lg sm:text-xl font-bold text-red-400">{constructor.position}</div>
+              <div className="flex-1 ml-3 sm:ml-4 min-w-0">
+                <p className="font-semibold text-base sm:text-lg dark:text-white text-gray-800 truncate">{constructorName}</p>
               </div>
-              <div className="text-right font-bold dark:text-gray-200 text-gray-800">
-                {constructor.points} <span className="text-sm dark:text-gray-300 text-gray-700">PTS</span>
+              <div className="text-right font-bold dark:text-gray-200 text-gray-800 ml-3 sm:ml-4">
+                {constructor.points} <span className="text-xs sm:text-sm dark:text-gray-300 text-gray-700">PTS</span>
               </div>
             </div>
           );
@@ -653,26 +638,26 @@ const StandingsPage = ({ f1Data, loading, error }) => {
   };
 
   return (
-    <div className="py-12">
-      <h1 className="text-4xl md:text-5xl font-extrabold dark:text-white text-gray-800 text-center mb-8">
+    <div className="py-8 sm:py-10 md:py-12">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold dark:text-white text-gray-800 text-center mb-6 sm:mb-8">
         F1 Sezon Sıralamaları
       </h1>
-      <div className="flex justify-center space-x-4 mb-8">
+      <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
         <button
           onClick={() => setActiveTab('drivers')}
-          className={`px-6 py-2 rounded-full font-medium transition-colors ${activeTab === 'drivers' ? 'bg-red-600 text-white' : 'dark:bg-zinc-900 bg-gray-200 dark:text-gray-300 text-gray-700 hover:text-red-400'}`}
+          className={`px-5 sm:px-6 py-2 rounded-full font-medium transition-colors ${activeTab === 'drivers' ? 'bg-red-600 text-white' : 'dark:bg-zinc-900 bg-gray-200 dark:text-gray-300 text-gray-700 hover:text-red-400'}`}
         >
           Pilotlar
         </button>
         <button
           onClick={() => setActiveTab('constructors')}
-          className={`px-6 py-2 rounded-full font-medium transition-colors ${activeTab === 'constructors' ? 'bg-red-600 text-white' : 'dark:bg-zinc-900 bg-gray-200 dark:text-gray-300 text-gray-700 hover:text-red-400'}`}
+          className={`px-5 sm:px-6 py-2 rounded-full font-medium transition-colors ${activeTab === 'constructors' ? 'bg-red-600 text-white' : 'dark:bg-zinc-900 bg-gray-200 dark:text-gray-300 text-gray-700 hover:text-red-400'}`}
         >
           Takımlar
         </button>
       </div>
 
-      <div className="max-w-3xl mx-auto">
+      <div className="max-w-3xl mx-auto px-2 sm:px-0">
         {activeTab === 'drivers' ? renderDrivers() : renderConstructors()}
       </div>
     </div>
@@ -694,6 +679,7 @@ const App = () => {
       return true; // Default to dark theme if local storage is unavailable
     }
   });
+  const [isNavOpen, setIsNavOpen] = useState(false);
   const { f1Data, loading, error } = useF1Data();
 
   useEffect(() => {
@@ -730,88 +716,91 @@ const App = () => {
     }
   };
 
+  // shared nav button style
+  const navBtn = (key, label) => (
+    <button
+      onClick={() => { setCurrentPage(key); setIsNavOpen(false); }}
+      className={`w-full sm:w-auto text-left sm:text-center px-4 py-2 rounded-full font-medium transition-colors duration-300 ${currentPage === key ? 'bg-red-600 text-white' : 'dark:text-gray-300 text-gray-700 hover:text-red-400'}`}
+    >
+      {label}
+    </button>
+  );
+
   return (
     <div className={`font-sans ${isDarkMode ? 'dark bg-zinc-900 text-white' : 'light bg-gray-50 text-gray-900'} min-h-screen transition-colors duration-500`}>
       <style>{`
-        body {
-          font-family: 'Inter', sans-serif;
-        }
-        @keyframes fade-in {
-          from { opacity: 0; transform: translateY(20px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes zoom-in {
-          from { opacity: 0; transform: scale(0.95); }
-          to { opacity: 1; transform: scale(1); }
-        }
-        .z-20 { z-index: 20; } /* Ensure dropdown is on top */
+        body { font-family: 'Inter', sans-serif; }
+        @keyframes fade-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes zoom-in { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+        .z-20 { z-index: 20; }
       `}</style>
 
       {/* Header */}
-      <header className="fixed top-0 w-full z-40 dark:bg-zinc-900/80 bg-gray-50/80 backdrop-blur-sm shadow-lg border-b dark:border-zinc-700/50 border-gray-200">
-        <nav className="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
-          <div className="flex items-center space-x-2">
-            <Gauge size={28} className="text-red-500" />
-            <span className="text-2xl font-bold dark:text-gray-200 text-gray-800">Arka Kanat</span>
+      <header className="fixed top-0 w-full z-40 dark:bg-zinc-900/80 bg-gray-50/80 backdrop-blur-sm shadow-lg border dark:border-zinc-700/50 border-gray-200">
+        <nav className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-2">
+              <Gauge size={26} className="text-red-500" />
+              <span className="text-xl sm:text-2xl font-bold dark:text-gray-200 text-gray-800">Arka Kanat</span>
+            </div>
+
+            {/* Desktop nav */}
+            <div className="hidden md:flex items-center gap-2 lg:gap-4">
+              {navBtn('home', 'Ana Sayfa')}
+              {navBtn('race-calendar', 'Yarış Takvimi')}
+              {navBtn('circuit-guide', 'Pist Rehberi')}
+              {navBtn('standings', 'Sıralamalar')}
+              {navBtn('team', 'Ekibimiz')}
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button onClick={toggleTheme} className="p-2 rounded-full dark:bg-zinc-900/50 bg-gray-200 hover:dark:bg-zinc-900 hover:bg-gray-300 transition-colors">
+                {isDarkMode ? <Sun size={22} className="text-yellow-400" /> : <Moon size={22} className="text-gray-500" />}
+              </button>
+              {/* Mobile nav toggle */}
+              <button
+                className="md:hidden p-2 rounded-lg dark:bg-zinc-900/50 bg-gray-200 hover:dark:bg-zinc-900 hover:bg-gray-300 transition-colors"
+                onClick={() => setIsNavOpen(v => !v)}
+                aria-label="Menüyü Aç/Kapat"
+              >
+                {isNavOpen ? <XIcon size={22} /> : <Menu size={22} />}
+              </button>
+            </div>
           </div>
-          <div className="flex-1 flex justify-center space-x-2 md:space-x-4">
-            <button
-              onClick={() => setCurrentPage('home')}
-              className={`p-2 md:px-4 md:py-2 rounded-full font-medium transition-colors duration-300 ${currentPage === 'home' ? 'bg-red-600 text-white' : 'dark:text-gray-300 text-gray-700 hover:text-red-400'}`}
-            >
-              Ana Sayfa
-            </button>
-            <button
-              onClick={() => setCurrentPage('race-calendar')}
-              className={`p-2 md:px-4 md:py-2 rounded-full font-medium transition-colors duration-300 ${currentPage === 'race-calendar' ? 'bg-red-600 text-white' : 'dark:text-gray-300 text-gray-700 hover:text-red-400'}`}
-            >
-              Yarış Takvimi
-            </button>
-            <button
-              onClick={() => setCurrentPage('circuit-guide')}
-              className={`p-2 md:px-4 md:py-2 rounded-full font-medium transition-colors duration-300 ${currentPage === 'circuit-guide' ? 'bg-red-600 text-white' : 'dark:text-gray-300 text-gray-700 hover:text-red-400'}`}
-            >
-              Pist Rehberi
-            </button>
-            <button
-              onClick={() => setCurrentPage('standings')}
-              className={`p-2 md:px-4 md:py-2 rounded-full font-medium transition-colors duration-300 ${currentPage === 'standings' ? 'bg-red-600 text-white' : 'dark:text-gray-300 text-gray-700 hover:text-red-400'}`}
-            >
-              Sıralamalar
-            </button>
-            <button
-              onClick={() => setCurrentPage('team')}
-              className={`p-2 md:px-4 md:py-2 rounded-full font-medium transition-colors duration-300 ${currentPage === 'team' ? 'bg-red-600 text-white' : 'dark:text-gray-300 text-gray-700 hover:text-red-400'}`}
-            >
-              Ekibimiz
-            </button>
-          </div >
-          <button onClick={toggleTheme} className="p-2 rounded-full dark:bg-zinc-900/50 bg-gray-200 hover:dark:bg-zinc-900 hover:bg-gray-300 transition-colors">
-            {isDarkMode ? <Sun size={24} className="text-yellow-400" /> : <Moon size={24} className="text-gray-500" />}
-          </button>
+
+          {/* Mobile nav panel */}
+          {isNavOpen && (
+            <div className="md:hidden mt-3 grid gap-2">
+              {navBtn('home', 'Ana Sayfa')}
+              {navBtn('race-calendar', 'Yarış Takvimi')}
+              {navBtn('circuit-guide', 'Pist Rehberi')}
+              {navBtn('standings', 'Sıralamalar')}
+              {navBtn('team', 'Ekibimiz')}
+            </div>
+          )}
         </nav>
-      </header >
+      </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8 pt-28">
+      <main className="container mx-auto px-3 sm:px-4 py-6 sm:py-8 pt-24 sm:pt-28">
         {renderPage()}
       </main>
 
       {/* Footer */}
-      <footer className="mt-12 text-center dark:text-gray-500 text-gray-700 py-8 border-t dark:border-zinc-700/50 border-gray-200">
-        <div className="flex justify-center space-x-4 mb-4">
-          <a href="https://www.instagram.com/arkakanat" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full dark:text-gray-300 text-gray-700 hover:text-red-500 transition-colors duration-300 transform hover:scale-125">
-            <Instagram size={24} />
+      <footer className="mt-8 sm:mt-10 md:mt-12 text-center dark:text-gray-500 text-gray-700 py-6 sm:py-8 border-t dark:border-zinc-700/50 border-gray-200">
+        <div className="flex justify-center space-x-4 mb-3 sm:mb-4">
+          <a href="https://www.instagram.com/arkakanat" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full dark:text-gray-300 text-gray-700 hover:text-red-500 transition-colors duration-300 transform hover:scale-110">
+            <Instagram size={22} />
           </a>
-          <a href="https://x.com/arkakanat" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full dark:text-gray-300 text-gray-700 hover:text-black dark:hover:text-white transition-colors duration-300 transform hover:scale-125">
-            <X size={24} />
+          <a href="https://x.com/arkakanat" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full dark:text-gray-300 text-gray-700 hover:text-black dark:hover:text-white transition-colors duration-300 transform hover:scale-110">
+            <X size={22} />
           </a>
         </div>
-        <p className="text-sm">
+        <p className="text-xs sm:text-sm">
           &copy; 2025 Arka Kanat. Tüm hakları saklıdır.
         </p>
       </footer>
-    </div >
+    </div>
   );
 };
 
