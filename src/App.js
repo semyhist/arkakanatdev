@@ -27,7 +27,8 @@ const team = {
     { name: 'Gencer', bio: '', emoji: '☯️' },
     { name: 'Taha Yasin', bio: '', emoji: '🐊' },
     { name: 'Melisa', bio: '', emoji: '🎀' },
-    { name: 'Furkan', bio: '', emoji: '🏎️' },
+    { name: 'Furkan', bio: '', emoji: '🌟' },
+    { name: 'Ayaz', bio: '', emoji: '🐧' },
   ]
 };
 
