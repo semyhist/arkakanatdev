@@ -11,13 +11,13 @@ git add .
 REM === İlk commit ===
 git commit -m "İlk yükleme"
 
-REM === Uzak repo ekle (Kendi GitHub adresini buraya yaz) ===
+REM === Uzak repo ekle ===
 git remote add origin https://github.com/semyhist/arkakanat-app.git
 
-REM === Branch belirt (main olarak) ===
-git branch -M main
+REM === Branch belirt (master olarak) ===
+git branch -M master
 
 REM === GitHub’a gönder ===
-git push -u origin main
+git push -u origin master
 
 pause
