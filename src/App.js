@@ -4,8 +4,8 @@ import { tr } from 'date-fns/locale';
 import { Sun, Moon, Instagram, X, Calendar, User, Users, MapPin, Star, Wind, Loader, AlertCircle, Send, ChevronDown, X as XIcon, Gauge, CircleDot, Flag, Clock, UserRound, ArrowRight, Trophy, CornerUpRight, CheckCircle2, History, Menu } from 'lucide-react';
 
 // =================================================================================================
-// 1. Static Data (data.js)
-// Constant data used throughout the application is stored here.
+// 1. Statik Veriler (data.js)
+// Uygulama genelinde kullanılan sabit veriler burada saklanır.
 // =================================================================================================
 const team = {
   management: [
@@ -32,7 +32,7 @@ const team = {
   ]
 };
 
-// New data for F1 History section
+// F1 Tarihi bölümü için yeni veriler
 const f1HistoryData = {
   mostDriverTitles: [
     { driver: 'Lewis Hamilton', titles: 7 },
@@ -165,15 +165,15 @@ const constructorColors = {
   "Visa Cash App RB": "bg-[#7198C6]",
   "Sauber": "bg-[#52E252]",
   "Haas F1 Team": "bg-[#B6BABD]",
-  "RB": "bg-[#7198C6]", // Alias for Visa Cash App RB
+  "RB": "bg-[#7198C6]", // Visa Cash App RB için takma ad
   "AlphaTauri": "bg-[#507F9D]",
   "Force India": "bg-[#F596C8]",
   "Toro Rosso": "bg-[#0A2647]",
 };
 
 // =================================================================================================
-// 2. Custom Hook (hooks/useF1Data.js)
-// This custom hook handles data fetching and state management.
+// 2. Özel Hook (hooks/useF1Data.js)
+// Bu özel hook, veri çekme ve durum yönetimini gerçekleştirir.
 // =================================================================================================
 const useF1Data = () => {
   const [f1Data, setF1Data] = useState({ races: [], driverStandings: [], constructorStandings: [] });
@@ -217,8 +217,8 @@ const useF1Data = () => {
 };
 
 // =================================================================================================
-// 3. Reusable Components (components/CustomComponents.js)
-// Reusable components for the site.
+// 3. Yeniden Kullanılabilir Bileşenler (components/CustomComponents.js)
+// Site için yeniden kullanılabilir bileşenler.
 // =================================================================================================
 const AnimatedSection = ({ children, delay = 0 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -291,7 +291,7 @@ const Countdown = ({ targetDate }) => {
   );
 };
 
-// Helper function to convert session times to Istanbul time
+// Seans zamanlarını İstanbul saatine çeviren yardımcı fonksiyon
 const convertToIstanbulTime = (date, time) => {
   try {
     const utcDate = new Date(`${date}T${time}`);
@@ -336,8 +336,8 @@ const getSessionNameTR = (sessionName) => {
 
 
 // =================================================================================================
-// 4. Page Components (components)
-// Each page's content is defined within its own component.
+// 4. Sayfa Bileşenleri (components)
+// Her sayfanın içeriği kendi bileşeni içinde tanımlanır.
 // =================================================================================================
 const HomePage = ({ f1Data, loading, error }) => {
   if (loading) return <div className="text-center dark:text-gray-300 text-gray-700 py-10"><Loader size={48} className="animate-spin mx-auto mb-4" />Veriler yükleniyor...</div>;
@@ -366,10 +366,10 @@ const HomePage = ({ f1Data, loading, error }) => {
               </h2>
               <p className="dark:text-gray-200 text-gray-800 mb-4 text-lg sm:text-xl md:text-2xl font-semibold break-words">{nextRace.raceName}</p>
 
-              {/* Countdown Component */}
+              {/* Geri Sayım Bileşeni */}
               <Countdown targetDate={`${nextRace.date}T${nextRace.time || '00:00:00Z'}`} />
 
-              {/* Race Details directly below the countdown */}
+              {/* Yarış Detayları doğrudan geri sayımın altında */}
               <div className="mt-6 sm:mt-8 pt-4 border-t dark:border-zinc-800 border-gray-300">
                 <h3 className="text-lg sm:text-xl font-bold dark:text-gray-200 text-gray-800 mb-3">Yarış Detayları</h3>
                 <div className="grid grid-cols-1 gap-3 sm:gap-4 text-left">
@@ -395,14 +395,14 @@ const HomePage = ({ f1Data, loading, error }) => {
 
       <div className="py-8 sm:py-10 md:py-12"></div>
 
-      {/* New F1 History Section */}
+      {/* Yeni F1 Tarihi Bölümü */}
       <AnimatedSection delay={400}>
         <section className="mb-10 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl font-bold dark:text-gray-100 text-gray-800 mb-4 sm:mb-6 flex items-center px-2">
             <History size={22} className="mr-2" /> F1 Tarihi
           </h2>
           <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
-            {/* Most Driver Titles */}
+            {/* En Çok Pilot Şampiyonluğu */}
             <div className="dark:bg-zinc-900 bg-white p-5 sm:p-6 rounded-2xl border dark:border-zinc-700/50 border-gray-300 shadow-lg transform transition-transform duration-300 hover:scale-[1.03] h-full flex flex-col">
               <h3 className="text-lg sm:text-xl font-semibold dark:text-gray-200 text-gray-800 mb-3 sm:mb-4">En Çok Pilotlar Şampiyonu</h3>
               <ul className="space-y-2 sm:space-y-3">
@@ -415,7 +415,7 @@ const HomePage = ({ f1Data, loading, error }) => {
               </ul>
             </div>
 
-            {/* Most Constructor Titles */}
+            {/* En Çok Takım Şampiyonluğu */}
             <div className="dark:bg-zinc-900 bg-white p-5 sm:p-6 rounded-2xl border dark:border-zinc-700/50 border-gray-300 shadow-lg transform transition-transform duration-300 hover:scale-[1.03] h-full flex flex-col">
               <h3 className="text-lg sm:text-xl font-semibold dark:text-gray-200 text-gray-800 mb-3 sm:mb-4">En Çok Takımlar Şampiyonu</h3>
               <ul className="space-y-2 sm:space-y-3">
@@ -429,7 +429,7 @@ const HomePage = ({ f1Data, loading, error }) => {
             </div>
           </div>
 
-          {/* All Season Champions */}
+          {/* Tüm Sezon Şampiyonları */}
           <div className="mt-8 sm:mt-12 dark:bg-zinc-900 bg-white p-4 sm:p-6 rounded-2xl border dark:border-zinc-700/50 border-gray-300 shadow-lg">
             <h3 className="text-lg sm:text-xl font-semibold dark:text-gray-200 text-gray-800 mb-3 sm:mb-4">Bütün Sezon Şampiyonları</h3>
             <div className="overflow-auto max-h-96">
@@ -667,8 +667,8 @@ const StandingsPage = ({ f1Data, loading, error }) => {
 
 
 // =================================================================================================
-// 5. Main Application Component (App.js)
-// Manages the overall structure and page routing of the site.
+// 5. Ana Uygulama Bileşeni (App.js)
+// Sitenin genel yapısını ve sayfa yönlendirmesini yönetir.
 // =================================================================================================
 const App = () => {
   const [currentPage, setCurrentPage] = useState('home');
@@ -677,14 +677,14 @@ const App = () => {
       const storedTheme = localStorage.getItem('theme');
       return storedTheme === 'dark' || (storedTheme === null && window.matchMedia('(prefers-color-scheme: dark)').matches);
     } catch (e) {
-      return true; // Default to dark theme if local storage is unavailable
+      return true; // Yerel depolama mevcut değilse varsayılan olarak karanlık tema kullan
     }
   });
   const [isNavOpen, setIsNavOpen] = useState(false);
   const { f1Data, loading, error } = useF1Data();
 
   useEffect(() => {
-    // Save theme setting to local storage
+    // Tema ayarını yerel depolamaya kaydet
     try {
       localStorage.setItem('theme', isDarkMode ? 'dark' : 'light');
     } catch (e) {
@@ -717,7 +717,7 @@ const App = () => {
     }
   };
 
-  // shared nav button style
+  // paylaşılan navigasyon butonu stili
   const navBtn = (key, label) => (
     <button
       onClick={() => { setCurrentPage(key); setIsNavOpen(false); }}
@@ -736,7 +736,7 @@ const App = () => {
         .z-20 { z-index: 20; }
       `}</style>
 
-      {/* Header */}
+      {/* Üst Kısım (Header) */}
       <header className="fixed top-0 w-full z-40 dark:bg-zinc-900/80 bg-gray-50/80 backdrop-blur-sm shadow-lg border dark:border-zinc-700/50 border-gray-200">
         <nav className="container mx-auto px-3 sm:px-4 py-3 sm:py-4">
           <div className="flex items-center justify-between">
@@ -745,7 +745,7 @@ const App = () => {
               <span className="text-xl sm:text-2xl font-bold dark:text-gray-200 text-gray-800">Arka Kanat</span>
             </div>
 
-            {/* Desktop nav */}
+            {/* Masaüstü navigasyon */}
             <div className="hidden md:flex items-center gap-2 lg:gap-4">
               {navBtn('home', 'Ana Sayfa')}
               {navBtn('race-calendar', 'Yarış Takvimi')}
@@ -758,7 +758,7 @@ const App = () => {
               <button onClick={toggleTheme} className="p-2 rounded-full dark:bg-zinc-900/50 bg-gray-200 hover:dark:bg-zinc-900 hover:bg-gray-300 transition-colors">
                 {isDarkMode ? <Sun size={22} className="text-yellow-400" /> : <Moon size={22} className="text-gray-500" />}
               </button>
-              {/* Mobile nav toggle */}
+              {/* Mobil navigasyon açma/kapama butonu */}
               <button
                 className="md:hidden p-2 rounded-lg dark:bg-zinc-900/50 bg-gray-200 hover:dark:bg-zinc-900 hover:bg-gray-300 transition-colors"
                 onClick={() => setIsNavOpen(v => !v)}
@@ -769,7 +769,7 @@ const App = () => {
             </div>
           </div>
 
-          {/* Mobile nav panel */}
+          {/* Mobil navigasyon paneli */}
           {isNavOpen && (
             <div className="md:hidden mt-3 grid gap-2">
               {navBtn('home', 'Ana Sayfa')}
@@ -782,12 +782,12 @@ const App = () => {
         </nav>
       </header>
 
-      {/* Main Content */}
+      {/* Ana İçerik */}
       <main className="container mx-auto px-3 sm:px-4 py-6 sm:py-8 pt-24 sm:pt-28">
         {renderPage()}
       </main>
 
-      {/* Footer */}
+      {/* Alt Kısım (Footer) */}
       <footer className="mt-8 sm:mt-10 md:mt-12 text-center dark:text-gray-500 text-gray-700 py-6 sm:py-8 border-t dark:border-zinc-700/50 border-gray-200">
         <div className="flex justify-center space-x-4 mb-3 sm:mb-4">
           <a href="https://www.instagram.com/arkakanat" target="_blank" rel="noopener noreferrer" className="p-2 rounded-full dark:text-gray-300 text-gray-700 hover:text-red-500 transition-colors duration-300 transform hover:scale-110">
