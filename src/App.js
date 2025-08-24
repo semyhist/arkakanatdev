@@ -9,12 +9,27 @@ import { Sun, Moon, Instagram, X, Calendar, User, Users, MapPin, Star, Wind, Loa
 // =================================================================================================
 const team = {
   management: [
-    { name: 'Emre', bio: 'Yarış stratejisti ve kahve bağımlısı. Pit stoplarımı saniyesinde hesaplarım.', emoji: '☕' },
-    { name: 'Ozan', bio: 'Statistiklerin efendisi. Her tur zamanını ezbere bilir, her pisti rüyasında görür.', emoji: '📊' },
+    { name: 'Aydın', bio: 'Genel sorumlu, kurucu ve yönetici.', emoji: '⚡' },
+    { name: 'Melih', bio: 'Sorumlu, ekip içi yönetici.', emoji: '🧠' },
+    { name: 'Yankı', bio: 'Yeni, genel sorumlu ve içerik sorumlusu.', emoji: '🎨' },
   ],
   admin: [
-    { name: 'Ceren', bio: 'Pist rehberinin mimarı. Her virajın hikayesini anlatır, en hızlı turu ezbere bilir.', emoji: '🏎️' },
-    { name: 'Deniz', bio: 'Fan duvarının bekçisi. Troll yorumlara karşı her zaman tetikte.', emoji: '🛡️' },
+    { name: 'Nisa', bio: 'İçerik ve Ekip içi denge sorumlusu', emoji: '🏎️' },
+    { name: 'Mehmet Selim', bio: '', emoji: '🏎️' },
+    { name: 'Ela', bio: '@oscarpiyastri', emoji: '🏎️' },
+    { name: 'Azra', bio: '@ferrarisefiri', emoji: '🏎️' },
+    { name: 'Yunus Emre', bio: '@orek.edits', emoji: '🏎️' },
+    { name: 'Yağız', bio: '@vettelsexuel', emoji: '🏎️' },
+   
+ 
+  ],
+    Twitter: [
+    { name: 'Utku', bio: 'Haber Departmanı yetkilisi.', emoji: '🏎️' },
+    { name: 'Furkan', bio: 'Haber Departmanı yetkilisi.', emoji: '🏎️' },
+    { name: 'Gencer', bio: '', emoji: '🏎️' },
+    { name: 'Taha Yasin', bio: '', emoji: '🏎️' },
+    { name: 'Utku', bio: '', emoji: '🏎️' },  
+    { name: 'Melisa', bio: '', emoji: '🏎️' },
   ]
 };
 
@@ -115,30 +130,30 @@ const f1HistoryData = {
 
 
 const circuits = [
-  { name: 'Bahreyn GP', location: 'Sakhir, Bahreyn', image: 'https://placehold.co/1200x600/124A69/C0DEEF?text=Bahreyn', length: '5.412 km', laps: 57, fastestLap: '1:31.447 (P. Gasly, 2020)', flag: '🇧🇭' },
-  { name: 'Suudi Arabistan GP', location: 'Cidde, Suudi Arabistan', image: 'https://placehold.co/1200x600/3D5361/C0DEEF?text=Suudi+Arabistan', length: '6.174 km', laps: 50, fastestLap: '1:30.734 (L. Hamilton, 2021)', flag: '🇸🇦' },
-  { name: 'Avustralya GP', location: 'Melbourne, Avustralya', image: 'https://placehold.co/1200x600/003C5C/C0DEEF?text=Avustralya', length: '5.303 km', laps: 58, fastestLap: '1:20.260 (S. Perez, 2023)', flag: '🇦🇺' },
-  { name: 'Japonya GP', location: 'Suzuka, Japonya', image: 'https://placehold.co/1200x600/404040/C0DEEF?text=Japonya', length: '5.807 km', laps: 53, fastestLap: '1:30.983 (L. Hamilton, 2019)', flag: '🇯🇵' },
-  { name: 'Çin GP', location: 'Şanghay, Çin', image: 'https://placehold.co/1200x600/8B0000/C0DEEF?text=Çin', length: '5.451 km', laps: 56, fastestLap: '1:32.238 (M. Schumacher, 2004)', flag: '🇨🇳' },
-  { name: 'Miami GP', location: 'Miami, ABD', image: 'https://placehold.co/1200x600/008080/C0DEEF?text=Miami', length: '5.412 km', laps: 57, fastestLap: '1:29.708 (M. Verstappen, 2023)', flag: '🇺🇸' },
-  { name: 'Emilia Romagna GP', location: 'Imola, İtalya', image: 'https://placehold.co/1200x600/800000/C0DEEF?text=Imola', length: '4.909 km', laps: 63, fastestLap: '1:15.484 (L. Hamilton, 2020)', flag: '🇮🇹' },
-  { name: 'Monako GP', location: 'Monte Carlo, Monako', image: 'https://placehold.co/1200x600/000080/C0DEEF?text=Monako', length: '3.337 km', laps: 78, fastestLap: '1:12.909 (L. Hamilton, 2021)', flag: '🇲🇨' },
-  { name: 'Kanada GP', location: 'Montreal, Kanada', image: 'https://placehold.co/1200x600/36454F/C0DEEF?text=Kanada', length: '4.361 km', laps: 70, fastestLap: '1:13.078 (V. Bottas, 2019)', flag: '🇨🇦' },
-  { name: 'İspanya GP', location: 'Barselona, İspanya', image: 'https://placehold.co/1200x600/5C2E00/C0DEEF?text=İspanya', length: '4.655 km', laps: 66, fastestLap: '1:18.149 (M. Verstappen, 2023)', flag: '🇪🇸' },
-  { name: 'Avusturya GP', location: 'Spielberg, Avusturya', image: 'https://placehold.co/1200x600/8B0000/C0DEEF?text=Avusturya', length: '4.318 km', laps: 71, fastestLap: '1:05.619 (C. Sainz, 2020)', flag: '🇦🇹' },
-  { name: 'Büyük Britanya GP', location: 'Silverstone, Birleşik Krallık', image: 'https://placehold.co/1200x600/36454F/C0DEEF?text=Büyük+Britanya', length: '5.891 km', laps: 52, fastestLap: '1:27.097 (M. Verstappen, 2020)', flag: '🇬🇧' },
-  { name: 'Macaristan GP', location: 'Budapeşte, Macaristan', image: 'https://placehold.co/1200x600/124A69/C0DEEF?text=Macaristan', length: '4.381 km', laps: 70, fastestLap: '1:16.627 (L. Hamilton, 2020)', flag: '🇭🇺' },
-  { name: 'Belçika GP', location: 'Spa-Francorchamps, Belçika', image: 'https://placehold.co/1200x600/003C5C/C0DEEF?text=Belçika', length: '7.004 km', laps: 44, fastestLap: '1:46.286 (V. Bottas, 2018)', flag: '🇧🇪' },
-  { name: 'Hollanda GP', location: 'Zandvoort, Hollanda', image: 'https://placehold.co/1200x600/DC0000/C0DEEF?text=Hollanda', length: '4.259 km', laps: 72, fastestLap: '1:11.097 (L. Hamilton, 2021)', flag: '🇳🇱' },
-  { name: 'İtalya GP', location: 'Monza, İtalya', image: 'https://placehold.co/1200x600/800000/C0DEEF?text=İtalya', length: '5.793 km', laps: 53, fastestLap: '1:21.046 (R. Barrichello, 2004)', flag: '🇮🇹' },
-  { name: 'Azerbaycan GP', location: 'Bakü, Azerbaycan', image: 'https://placehold.co/1200x600/404040/C0DEEF?text=Azerbaycan', length: '6.003 km', laps: 51, fastestLap: '1:43.080 (C. Leclerc, 2019)', flag: '🇦🇿' },
-  { name: 'Singapur GP', location: 'Marina Bay, Singapur', image: 'https://placehold.co/1200x600/124A69/C0DEEF?text=Singapur', length: '5.063 km', laps: 62, fastestLap: '1:41.905 (K. Magnussen, 2018)', flag: '🇸🇬' },
-  { name: 'ABD GP', location: 'Austin, ABD', image: 'https://placehold.co/1200x600/008080/C0DEEF?text=ABD', length: '5.513 km', laps: 56, fastestLap: '1:33.109 (C. Leclerc, 2019)', flag: '🇺🇸' },
-  { name: 'Meksika GP', location: 'Meksiko, Meksika', image: 'https://placehold.co/1200x600/003C5C/C0DEEF?text=Meksika', length: '4.304 km', laps: 71, fastestLap: '1:17.774 (M. Verstappen, 2022)', flag: '🇲🇽' },
-  { name: 'Brezilya GP', location: 'Interlagos, Brezilya', image: 'https://placehold.co/1200x600/5C2E00/C0DEEF?text=Brezilya', length: '4.309 km', laps: 71, fastestLap: '1:10.540 (V. Bottas, 2018)', flag: '🇧🇷' },
-  { name: 'Las Vegas GP', location: 'Las Vegas, ABD', image: 'https://placehold.co/1200x600/000080/C0DEEF?text=Las+Vegas', length: '6.201 km', laps: 50, fastestLap: '1:35.490 (O. Piastri, 2023)', flag: '🇺🇸' },
-  { name: 'Katar GP', location: 'Losail, Katar', image: 'https://placehold.co/1200x600/36454F/C0DEEF?text=Katar', length: '5.380 km', laps: 57, fastestLap: '1:24.319 (M. Verstappen, 2023)', flag: '🇶🇦' },
-  { name: 'Abu Dabi GP', location: 'Yas Marina, BAE', image: 'https://placehold.co/1200x600/8B0000/C0DEEF?text=Abu+Dabi', length: '5.281 km', laps: 58, fastestLap: '1:26.103 (M. Verstappen, 2021)', flag: '🇦🇪' }
+  { name: 'Bahreyn GP', location: 'Sakhir, Bahreyn', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Flag_of_Bahrain.svg/1280px-Flag_of_Bahrain.svg.png', length: '5.412 km', laps: 57, fastestLap: '1:31.447 (P. Gasly, 2020)', flag: '🇧🇭' },
+  { name: 'Suudi Arabistan GP', location: 'Cidde, Suudi Arabistan', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Flag_of_Saudi_Arabia.svg/800px-Flag_of_Saudi_Arabia.svg.png', length: '6.174 km', laps: 50, fastestLap: '1:30.734 (L. Hamilton, 2021)', flag: '🇸🇦' },
+  { name: 'Avustralya GP', location: 'Melbourne, Avustralya', image: 'https://upload.wikimedia.org/wikipedia/commons/b/b9/Flag_of_Australia.svg', length: '5.303 km', laps: 58, fastestLap: '1:20.260 (S. Perez, 2023)', flag: '🇦🇺' },
+  { name: 'Japonya GP', location: 'Suzuka, Japonya', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Flag_of_Japan%28bordered%29.svg/1200px-Flag_of_Japan%28bordered%29.svg.png', length: '5.807 km', laps: 53, fastestLap: '1:30.983 (L. Hamilton, 2019)', flag: '🇯🇵' },
+  { name: 'Çin GP', location: 'Şanghay, Çin', image: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Flag_of_the_People%27s_Republic_of_China.svg', length: '5.451 km', laps: 56, fastestLap: '1:32.238 (M. Schumacher, 2004)', flag: '🇨🇳' },
+  { name: 'Miami GP', location: 'Miami, ABD', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1200px-Flag_of_the_United_States.svg.png', length: '5.412 km', laps: 57, fastestLap: '1:29.708 (M. Verstappen, 2023)', flag: '🇺🇸' },
+  { name: 'Emilia Romagna GP', location: 'Imola, İtalya', image: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg', length: '4.909 km', laps: 63, fastestLap: '1:15.484 (L. Hamilton, 2020)', flag: '🇮🇹' },
+  { name: 'Monako GP', location: 'Monte Carlo, Monako', image: 'https://upload.wikimedia.org/wikipedia/commons/e/ea/Flag_of_Monaco.svg', length: '3.337 km', laps: 78, fastestLap: '1:12.909 (L. Hamilton, 2021)', flag: '🇲🇨' },
+  { name: 'Kanada GP', location: 'Montreal, Kanada', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/960px-Flag_of_Canada_%28Pantone%29.svg.png', length: '4.361 km', laps: 70, fastestLap: '1:13.078 (V. Bottas, 2019)', flag: '🇨🇦' },
+  { name: 'İspanya GP', location: 'Barselona, İspanya', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Spain.svg/640px-Flag_of_Spain.svg.png', length: '4.655 km', laps: 66, fastestLap: '1:18.149 (M. Verstappen, 2023)', flag: '🇪🇸' },
+  { name: 'Avusturya GP', location: 'Spielberg, Avusturya', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Flag_of_Austria.svg/1200px-Flag_of_Austria.svg.png', length: '4.318 km', laps: 71, fastestLap: '1:05.619 (C. Sainz, 2020)', flag: '🇦🇹' },
+  { name: 'Büyük Britanya GP', location: 'Silverstone, Birleşik Krallık', image: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Flag_of_the_United_Kingdom_%283-5%29.svg', length: '5.891 km', laps: 52, fastestLap: '1:27.097 (M. Verstappen, 2020)', flag: '🇬🇧' },
+  { name: 'Macaristan GP', location: 'Budapeşte, Macaristan', image: 'https://upload.wikimedia.org/wikipedia/commons/c/c1/Flag_of_Hungary.svg', length: '4.381 km', laps: 70, fastestLap: '1:16.627 (L. Hamilton, 2020)', flag: '🇭🇺' },
+  { name: 'Belçika GP', location: 'Spa-Francorchamps, Belçika', image: 'https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Belgium.svg', length: '7.004 km', laps: 44, fastestLap: '1:46.286 (V. Bottas, 2018)', flag: '🇧🇪' },
+  { name: 'Hollanda GP', location: 'Zandvoort, Hollanda', image: 'https://media.istockphoto.com/id/1054401238/tr/vekt%C3%B6r/vekt%C3%B6r-hollanda-bayra%C4%9F%C4%B1-oran%C4%B1-2-3-hollanda-bayra%C4%9F%C4%B1-hollanda-krall%C4%B1%C4%9F%C4%B1-tricolor-bayrak.jpg?s=612x612&w=0&k=20&c=ewUZtITOGPtlomcZykdGWFBVlQx1tYng2yk8-XFkwLA=', length: '4.259 km', laps: 72, fastestLap: '1:11.097 (L. Hamilton, 2021)', flag: '🇳🇱' },
+  { name: 'İtalya GP', location: 'Monza, İtalya', image: 'https://upload.wikimedia.org/wikipedia/commons/0/03/Flag_of_Italy.svg', length: '5.793 km', laps: 53, fastestLap: '1:21.046 (R. Barrichello, 2004)', flag: '🇮🇹' },
+  { name: 'Azerbaycan GP', location: 'Bakü, Azerbaycan', image: 'https://upload.wikimedia.org/wikipedia/commons/d/dd/Flag_of_Azerbaijan.svg', length: '6.003 km', laps: 51, fastestLap: '1:43.080 (C. Leclerc, 2019)', flag: '🇦🇿' },
+  { name: 'Singapur GP', location: 'Marina Bay, Singapur', image: 'https://upload.wikimedia.org/wikipedia/commons/4/48/Flag_of_Singapore.svg', length: '5.063 km', laps: 62, fastestLap: '1:41.905 (K. Magnussen, 2018)', flag: '🇸🇬' },
+  { name: 'ABD GP', location: 'Austin, ABD', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1200px-Flag_of_the_United_States.svg.png', length: '5.513 km', laps: 56, fastestLap: '1:33.109 (C. Leclerc, 2019)', flag: '🇺🇸' },
+  { name: 'Meksika GP', location: 'Meksiko, Meksika', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/960px-Flag_of_Mexico.svg.png', length: '4.304 km', laps: 71, fastestLap: '1:17.774 (M. Verstappen, 2022)', flag: '🇲🇽' },
+  { name: 'Brezilya GP', location: 'Interlagos, Brezilya', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/2560px-Flag_of_Brazil.svg.png', length: '4.309 km', laps: 71, fastestLap: '1:10.540 (V. Bottas, 2018)', flag: '🇧🇷' },
+  { name: 'Las Vegas GP', location: 'Las Vegas, ABD', image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Flag_of_the_United_States.svg/1200px-Flag_of_the_United_States.svg.png', length: '6.201 km', laps: 50, fastestLap: '1:35.490 (O. Piastri, 2023)', flag: '🇺🇸' },
+  { name: 'Katar GP', location: 'Losail, Katar', image: 'https://upload.wikimedia.org/wikipedia/commons/6/65/Flag_of_Qatar.svg', length: '5.380 km', laps: 57, fastestLap: '1:24.319 (M. Verstappen, 2023)', flag: '🇶🇦' },
+  { name: 'Abu Dabi GP', location: 'Yas Marina, BAE', image: 'https://upload.wikimedia.org/wikipedia/commons/c/cb/Flag_of_the_United_Arab_Emirates.svg', length: '5.281 km', laps: 58, fastestLap: '1:26.103 (M. Verstappen, 2021)', flag: '🇦🇪' }
 ];
 
 const constructorColors = {
@@ -340,10 +355,10 @@ const HomePage = ({ f1Data, loading, error }) => {
       <AnimatedSection>
         <section className="text-center py-16">
           <h1 className="text-4xl md:text-6xl font-extrabold dark:text-white text-gray-800 mb-4 animate-fade-in">
-            Formula 1 Tutkunlarının Buluşma Noktası
+            Formula 1'in Arka Kanat'ı
           </h1>
           <p className="text-lg md:text-xl dark:text-gray-300 text-gray-700 mb-8 animate-fade-in">
-            En güncel haberler, yarış takvimi ve daha fazlası...
+            Bu sayfa bir Arka Kanat ürünüdür
           </p>
           {nextRace && (
             <div className="dark:bg-zinc-900 bg-gray-50 p-6 rounded-3xl border dark:border-zinc-700/50 border-gray-300 shadow-2xl inline-block animate-zoom-in">
@@ -541,10 +556,9 @@ const TeamPage = () => (
           </AnimatedSection>
         ))}
       </div>
-      
-      {/* Admin Segment */}
-      <h2 className="text-3xl font-bold dark:text-white text-gray-800 mb-8 mt-4 border-b-2 border-red-500 pb-2">Admin</h2>
-      <div className="grid sm:grid-cols-2 gap-8">
+           {/* Yönetim Segment */}
+      <h2 className="text-3xl font-bold dark:text-white text-gray-800 mb-8 mt-4 border-b-2 border-red-500 pb-2">İçerik Üretim</h2>
+      <div className="grid sm:grid-cols-2 gap-8 mb-12">
         {team.admin.map((member, index) => (
           <AnimatedSection key={`admin-${index}`} delay={index * 150}>
             <div className="dark:bg-zinc-900 bg-white rounded-2xl p-6 text-center border dark:border-zinc-700/50 border-gray-300 h-full flex flex-col items-center">
@@ -555,9 +569,25 @@ const TeamPage = () => (
           </AnimatedSection>
         ))}
       </div>
+      
+      {/* Admin Segment */}
+      <h2 className="text-3xl font-bold dark:text-white text-gray-800 mb-8 mt-4 border-b-2 border-red-500 pb-2">Haber (X)</h2>
+      <div className="grid sm:grid-cols-2 gap-8">
+        {team.Twitter.map((member, index) => (
+          <AnimatedSection key={`Twitter-${index}`} delay={index * 150}>
+            <div className="dark:bg-zinc-900 bg-white rounded-2xl p-6 text-center border dark:border-zinc-700/50 border-gray-300 h-full flex flex-col items-center">
+              <span className="text-5xl mb-4">{member.emoji}</span>
+              <h3 className="text-2xl font-bold dark:text-gray-100 text-gray-800 mb-2">{member.name}</h3>
+              <p className="dark:text-gray-300 text-gray-700 text-sm flex-1">{member.bio}</p>
+            </div>
+          </AnimatedSection>
+          
+        ))}
+      </div>
     </div>
   </div>
 );
+
 
 const StandingsPage = ({ f1Data, loading, error }) => {
   const [activeTab, setActiveTab] = useState('drivers');
@@ -722,7 +752,7 @@ const App = () => {
         <nav className="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0">
           <div className="flex items-center space-x-2">
             <Gauge size={28} className="text-red-500" />
-            <span className="text-2xl font-bold dark:text-gray-200 text-gray-800">Arkakanat</span>
+            <span className="text-2xl font-bold dark:text-gray-200 text-gray-800">Arka Kanat</span>
           </div>
           <div className="flex-1 flex justify-center space-x-2 md:space-x-4">
             <button
@@ -778,7 +808,7 @@ const App = () => {
           </a>
         </div>
         <p className="text-sm">
-          &copy; 2024 Arkakanat. Tüm hakları saklıdır.
+          &copy; 2025 Arka Kanat. Tüm hakları saklıdır.
         </p>
       </footer>
     </div >
