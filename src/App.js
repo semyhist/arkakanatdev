@@ -26,7 +26,8 @@ const App = () => {
     }
   });
   const [isNavOpen, setIsNavOpen] = useState(false);
-  const { f1Data, loading, error } = useF1Data();
+  const [year, setYear] = useState(new Date().getFullYear());
+  const { f1Data, loading, error, fetchRaceResults } = useF1Data(year);
 
   useEffect(() => {
     // Tema ayarını yerel depolamaya kaydet
@@ -50,11 +51,11 @@ const App = () => {
       case 'home':
         return <HomePage f1Data={f1Data} loading={loading} error={error} />;
       case 'race-calendar':
-        return <RaceCalendarPage f1Data={f1Data} loading={loading} error={error} />;
+        return <RaceCalendarPage f1Data={f1Data} loading={loading} error={error} year={year} setYear={setYear} fetchRaceResults={fetchRaceResults} />;
       case 'circuit-guide':
         return <CircuitGuidePage circuits={circuits} />;
       case 'standings':
-        return <StandingsPage f1Data={f1Data} loading={loading} error={error} />;
+        return <StandingsPage f1Data={f1Data} loading={loading} error={error} year={year} setYear={setYear} />;
       case 'team':
         return <TeamPage />;
       case 'add-to-home-screen':

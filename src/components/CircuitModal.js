@@ -1,4 +1,4 @@
-import { X, MapPin, Clock, Trophy, Info, History } from 'lucide-react';
+import { X, MapPin, Trophy, Info, History, Zap, BarChart, Key, GitCommit } from 'lucide-react';
 
 const CircuitModal = ({ circuit, onClose }) => {
   if (!circuit) return null;
@@ -60,6 +60,45 @@ const CircuitModal = ({ circuit, onClose }) => {
               <h3 className="font-bold text-lg sm:text-xl mb-2 flex items-center dark:text-gray-200 text-gray-700"><History size={18} className="mr-2"/>Tarihçe</h3>
               <p className="dark:text-gray-300 text-gray-600 text-sm leading-relaxed">{circuit.history}</p>
             </div>
+            {circuit.funFacts && (
+              <div>
+                <h3 className="font-bold text-lg sm:text-xl mb-2 flex items-center dark:text-gray-200 text-gray-700"><Zap size={18} className="mr-2 text-blue-500"/>Eğlenceli Bilgiler</h3>
+                <ul className="space-y-2 list-disc list-inside">
+                  {circuit.funFacts.map((fact, index) => (
+                    <li key={index} className="dark:text-gray-300 text-gray-600 text-sm">{fact}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {circuit.characteristics && (
+              <div>
+                <h3 className="font-bold text-lg sm:text-xl mb-2 flex items-center dark:text-gray-200 text-gray-700"><BarChart size={18} className="mr-2 text-green-500"/>Pist Karakteristiği</h3>
+                <ul className="space-y-2 list-disc list-inside">
+                  {circuit.characteristics.map((char, index) => (
+                    <li key={index} className="dark:text-gray-300 text-gray-600 text-sm">{char}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {circuit.whatToWin && (
+              <div>
+                <h3 className="font-bold text-lg sm:text-xl mb-2 flex items-center dark:text-gray-200 text-gray-700"><Key size={18} className="mr-2 text-purple-500"/>Kazanmak İçin Ne Gerekir?</h3>
+                <p className="dark:text-gray-300 text-gray-600 text-sm leading-relaxed">{circuit.whatToWin}</p>
+              </div>
+            )}
+            {circuit.cornerAnalysis && (
+              <div>
+                <h3 className="font-bold text-lg sm:text-xl mb-2 flex items-center dark:text-gray-200 text-gray-700"><GitCommit size={18} className="mr-2 text-orange-500"/>Viraj Analizi</h3>
+                <div className="space-y-4">
+                  {circuit.cornerAnalysis.map((corner, index) => (
+                    <div key={index}>
+                      <h4 className="font-semibold dark:text-gray-200 text-gray-800">{corner.cornerName} - <span className="text-sm font-normal dark:text-gray-400 text-gray-600">{corner.speed}</span></h4>
+                      <p className="dark:text-gray-300 text-gray-600 text-sm mt-1">{corner.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

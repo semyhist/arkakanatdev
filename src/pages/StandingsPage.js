@@ -2,8 +2,9 @@ import { useState } from 'react';
 import { AlertCircle } from 'lucide-react';
 import { constructorColors } from '../data/constructorColors';
 import StandingsSkeleton from '../components/skeletons/StandingsSkeleton';
+import YearSelector from '../components/YearSelector';
 
-const StandingsPage = ({ f1Data, loading, error }) => {
+const StandingsPage = ({ f1Data, loading, error, year, setYear }) => {
   const [activeTab, setActiveTab] = useState('drivers');
 
   if (loading) return <StandingsSkeleton />;
@@ -11,7 +12,7 @@ const StandingsPage = ({ f1Data, loading, error }) => {
 
   const renderDrivers = () => {
     if (!f1Data.driverStandings || f1Data.driverStandings.length === 0) {
-      return <div className="text-center dark:text-gray-300 text-gray-700 py-10">Pilotlar sıralaması verisi henüz mevcut değil.</div>;
+      return <div className="text-center dark:text-gray-300 text-gray-700 py-10">{year} sezonu için pilotlar sıralaması verisi bulunamadı.</div>;
     }
     return (
       <div className="space-y-3 sm:space-y-4">
@@ -38,7 +39,7 @@ const StandingsPage = ({ f1Data, loading, error }) => {
 
   const renderConstructors = () => {
     if (!f1Data.constructorStandings || f1Data.constructorStandings.length === 0) {
-      return <div className="text-center dark:text-gray-300 text-gray-700 py-10">Takımlar sıralaması verisi henüz mevcut değil.</div>;
+      return <div className="text-center dark:text-gray-300 text-gray-700 py-10">{year} sezonu için takımlar sıralaması verisi bulunamadı.</div>;
     }
     return (
       <div className="space-y-3 sm:space-y-4">
@@ -64,9 +65,14 @@ const StandingsPage = ({ f1Data, loading, error }) => {
 
   return (
     <div className="py-8 sm:py-10 md:py-12">
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold dark:text-white text-gray-800 text-center mb-6 sm:mb-8">
-        F1 Sezon Sıralamaları
-      </h1>
+      <div className="text-center mb-6 sm:mb-8">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold dark:text-white text-gray-800">
+          F1 Sezon Sıralamaları
+        </h1>
+        <div className="mt-4 flex justify-center">
+          <YearSelector year={year} setYear={setYear} />
+        </div>
+      </div>
       <div className="flex flex-wrap justify-center gap-3 sm:gap-4 mb-6 sm:mb-8">
         <button
           onClick={() => setActiveTab('drivers')}
