@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AlertCircle, CircleDot, History, Bell, TestTube2 } from 'lucide-react';
+import { AlertCircle, CircleDot, History, Bell } from 'lucide-react';
 import HomePageSkeleton from '../components/skeletons/HomePageSkeleton';
 import AnimatedSection from '../components/AnimatedSection';
 import Countdown from '../components/Countdown';
@@ -33,28 +33,6 @@ const HomePage = ({ f1Data, loading, error }) => {
     }
   };
 
-  const handleTestNotification = () => {
-    if (permission !== 'granted') {
-      alert('Lütfen önce bildirimlere izin verin.');
-      return;
-    }
-    // Send a test notification immediately
-    if (navigator.serviceWorker.controller) {
-      navigator.serviceWorker.controller.postMessage({
-        type: 'SCHEDULE_NOTIFICATION',
-        payload: {
-          timestamp: Date.now() + 1000, // 1 second in the future
-          title: 'Test Bildirimi',
-          options: {
-            body: 'Bu bir test bildirimidir. Her şey çalışıyor!',
-            icon: '/aklogo.png',
-            tag: 'test-notification'
-          }
-        }
-      });
-    }
-  };
-
   return (
     <>
       <AnimatedSection>
@@ -75,8 +53,8 @@ const HomePage = ({ f1Data, loading, error }) => {
 
               <Countdown targetDate={`${nextRace.date}T${nextRace.time || '00:00:00Z'}`} />
 
-              {/* Bildirim Butonları */}
-              <div className="mt-4 flex justify-center items-center gap-x-4">
+              {/* Bildirim Butonu */}
+              <div className="mt-4 text-center">
                 <button 
                   onClick={handleNotificationClick}
                   disabled={permission === 'denied' || notificationScheduled}
@@ -88,15 +66,6 @@ const HomePage = ({ f1Data, loading, error }) => {
                     : notificationScheduled 
                       ? 'Bildirim Kuruldu' 
                       : 'Yarıştan 30dk Önce Bildir'}
-                </button>
-                {/* Test Butonu */}
-                <button 
-                  onClick={handleTestNotification}
-                  disabled={permission !== 'granted'}
-                  className="inline-flex items-center justify-center p-2 border border-transparent text-sm font-medium rounded-full shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
-                  title="Test Bildirimi Gönder"
-                >
-                  <TestTube2 size={18} />
                 </button>
               </div>
 

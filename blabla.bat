@@ -1,23 +1,27 @@
 @echo off
-REM === Proje klasörüne git ===
-cd /d "C:\Users\HP\Desktop\akweb"
+:: Proje güncelleme scripti
+:: GitHub master branch'e push eder
 
-REM === Git başlat (sadece ilk seferde lazım, sonrasında gerek yok) ===
-git init
+echo ----------------------------
+echo   Proje GitHub'a gonderiliyor
+echo ----------------------------
 
-REM === Dosyaları ekle ===
+:: Değişiklikleri ekle
 git add .
 
-REM === İlk commit ===
-git commit -m "İlk yükleme"
+:: Commit mesajı zaman damgalı
+for /f "tokens=1-4 delims=:. " %%a in ("%time%") do (
+    set HOUR=%%a
+    set MINUTE=%%b
+    set SECOND=%%c
+)
+set TIMESTAMP=%date% %HOUR%:%MINUTE%:%SECOND%
+git commit -m "update - %TIMESTAMP%"
 
-REM === Uzak repo ekle ===
-git remote add origin https://github.com/semyhist/arkakanat-app.git
+:: Master branch'e gönder
+git push origin master
 
-REM === Branch belirt (master olarak) ===
-git branch -M master
-
-REM === GitHub’a gönder ===
-git push -u origin master
-
+echo ----------------------------
+echo   Guncelleme tamamlandi!
+echo ----------------------------
 pause
