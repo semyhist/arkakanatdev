@@ -35,6 +35,41 @@ const HomePage = ({ f1Data, loading, error }) => {
 
   return (
     <>
+      <style>{`
+        @media (max-width: 768px) {
+          .responsive-table thead {
+            display: none;
+          }
+          .responsive-table tr {
+            display: block;
+            margin-bottom: 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid #e5e7eb; /* gray-200 */
+          }
+          .dark .responsive-table tr {
+            border-color: #404040; /* zinc-700 */
+          }
+          .responsive-table td {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.75rem 1rem;
+            text-align: right;
+            border-bottom: 1px solid #f3f4f6; /* gray-100 */
+          }
+          .dark .responsive-table td {
+            border-color: #3f3f46; /* zinc-800 */
+          }
+          .responsive-table td::before {
+            content: attr(data-label);
+            font-weight: 600;
+            text-align: left;
+            margin-right: 1rem;
+          }
+          .responsive-table td:last-child {
+            border-bottom: 0;
+          }
+        }
+      `}</style>
       <AnimatedSection>
         <section className="text-center py-10 sm:py-12 md:py-16">
           <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold dark:text-white text-gray-800 mb-3 sm:mb-4 animate-fade-in px-2">
@@ -129,8 +164,8 @@ const HomePage = ({ f1Data, loading, error }) => {
 
           <div className="mt-8 sm:mt-12 dark:bg-zinc-900 bg-white p-4 sm:p-6 rounded-2xl border dark:border-zinc-700/50 border-gray-300 shadow-lg">
             <h3 className="text-lg sm:text-xl font-semibold dark:text-gray-200 text-gray-800 mb-3 sm:mb-4">Bütün Sezon Şampiyonları</h3>
-            <div className="overflow-auto max-h-96">
-              <table className="min-w-full divide-y dark:divide-zinc-700 divide-gray-300 text-sm">
+            <div className="max-h-96 overflow-y-auto">
+              <table className="min-w-full text-sm responsive-table">
                 <thead className="sticky top-0 dark:bg-zinc-900 bg-white">
                   <tr>
                     <th scope="col" className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-medium dark:text-gray-300 text-gray-500 uppercase tracking-wider">Sezon</th>
@@ -138,12 +173,12 @@ const HomePage = ({ f1Data, loading, error }) => {
                     <th scope="col" className="px-4 sm:px-6 py-3 text-left text-[11px] sm:text-xs font-medium dark:text-gray-300 text-gray-500 uppercase tracking-wider">Takımlar Şampiyonu</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y dark:divide-zinc-700 divide-gray-300">
+                <tbody className="dark:divide-zinc-700 divide-gray-300">
                   {f1HistoryData.allChampions.map((champion, index) => (
                     <tr key={index} className="hover:dark:bg-zinc-700/50 hover:bg-gray-200 transition-colors">
-                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap dark:text-gray-200 text-gray-800">{champion.year}</td>
-                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap dark:text-gray-300 text-gray-700">{champion.driver}</td>
-                      <td className="px-4 sm:px-6 py-3 whitespace-nowrap dark:text-gray-300 text-gray-700">{champion.constructor}</td>
+                      <td data-label="Sezon" className="px-4 sm:px-6 py-3 whitespace-nowrap dark:text-gray-200 text-gray-800">{champion.year}</td>
+                      <td data-label="Pilot Şampiyonu" className="px-4 sm:px-6 py-3 whitespace-nowrap dark:text-gray-300 text-gray-700">{champion.driver}</td>
+                      <td data-label="Takımlar Şampiyonu" className="px-4 sm:px-6 py-3 whitespace-nowrap dark:text-gray-300 text-gray-700">{champion.constructor}</td>
                     </tr>
                   ))}
                 </tbody>

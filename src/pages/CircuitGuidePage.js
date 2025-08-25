@@ -23,8 +23,9 @@ const CircuitGuidePage = ({ circuits }) => {
         {circuits.map((circuit, index) => (
           <AnimatedSection key={index} delay={index * 100}>
             <div 
-              className="relative dark:bg-zinc-900 bg-white rounded-2xl overflow-hidden shadow-lg border dark:border-zinc-700/50 border-gray-300 h-full flex flex-col cursor-pointer transform transition-transform duration-300 hover:-translate-y-2"
+              className="relative dark:bg-zinc-900 bg-white rounded-2xl overflow-hidden shadow-lg border dark:border-zinc-700/50 border-gray-300 h-full flex flex-col cursor-pointer transform transition-transform duration-300 hover:-translate-y-2 focus-within:-translate-y-2"
               onClick={() => openModal(circuit)}
+              tabIndex="0"
             >
               <img
                 src={circuit.image}
